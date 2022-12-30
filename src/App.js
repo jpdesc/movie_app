@@ -11,6 +11,10 @@ const App = () => {
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
+    useEffect(() => {
+        searchMovies("Batman");
+    }, []);
+
     const searchMovies = async (title) => {
         const response = await fetch(`${API_URL}&s=${title}`)
         const data = await response.json();
@@ -19,9 +23,7 @@ const App = () => {
     }
 
 
-    useEffect(() => {
-        searchMovies('Spiderman');
-    }, []);
+
 
     return (
         <div className="app">
@@ -36,7 +38,7 @@ const App = () => {
                 <img
                     src={SearchIcon}
                     alt="search"
-                    onClick={() => { }}
+                    onClick={() => searchMovies(searchTerm)}
                 />
             </div>
             {
